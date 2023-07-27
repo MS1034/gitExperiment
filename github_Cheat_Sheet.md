@@ -79,6 +79,15 @@ cd /path/to/my/repo
 git config user.name "Your Login At Work"
 git config user.email mail_at_work@example.com
 
+//remove global
+git config --global --remove-section user.name
+git config --global --remove-section user.email
+
+//To force git to look for your identity only within a repository's settings, not in the global config:
+git config --global user.useConfigOnly true
+
+
+
 
 ```
 
