@@ -1,6 +1,6 @@
-# Git Hub Cheat Sheet
+# Git Cheat Sheet
 
-## Basics
+## Hello World of GIT 
 
 ###### Check the Version
 
@@ -24,5 +24,18 @@ git --version
 
 ```bash
 git add <file/directory name #1> <file/directory name #2> < ... >
+```
+
+###### Stage all files to be added to version control
+
+```bash
+git add .
+```
+
+  ###### This creates a new commit with the given message  
+
+```bash
+git commit -m "message"
+//If you omit the -m parameter, your default editor will open and you can edit and save the commit message there.
 ```
 
