@@ -87,5 +87,12 @@ git config --global --remove-section user.email
 git config --global user.useConfigOnly true
 ```
 
+###### Learning about a command  
+
+```bash
+git diff --help //git command --h
+git help diff  // git help command 
+```
+
 
 
