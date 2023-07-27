@@ -43,6 +43,6 @@ git commit -m "message"
 
 ```bash
 git remote add origin https://<your-git-service-address>/owner/repository.git
-git remote add origin git@github.com:MS1034/gitExperiment.gi
+git remote add origin git@github.com:MS1034/gitExperiment.git
 ```
 
