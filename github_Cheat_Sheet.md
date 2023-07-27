@@ -85,10 +85,6 @@ git config --global --remove-section user.email
 
 //To force git to look for your identity only within a repository's settings, not in the global config:
 git config --global user.useConfigOnly true
-
-
-
-
 ```
 
 
