@@ -39,3 +39,10 @@ git commit -m "message"
 //If you omit the -m parameter, your default editor will open and you can edit and save the commit message there.
 ```
 
+######  Adding a remote  
+
+```bash
+git remote add origin https://<your-git-service-address>/owner/repository.git
+git remote add origin git@github.com:MS1034/gitExperiment.gi
+```
+
