@@ -332,6 +332,77 @@ git rm filename
 
 [glob pattern - Wikipedia](https://en.wikipedia.org/wiki/Glob_(programming))
 
+```bash
+# Lines starting with `#` are comments.
+# Ignore files called 'file.ext'
+file.ext
+# Comments can't be on the same line as rules!
+# The following line ignores files called 'file.ext # not a comment'
+file.ext # not a comment
+# Ignoring files with full path.
+# This matches files in the root directory and subdirectories too.
+# i.e. otherfile.ext will be ignored anywhere on the tree.
+dir/otherdir/file.ext
+otherfile.ext
+# Ignoring directories
+# Both the directory itself and its contents will be ignored.
+bin/
+gen/GoalKicker.com – Git® Notes for Professionals 25
+# Glob pattern can also be used here to ignore paths with certain characters.
+# For example, the below rule will match both build/ and Build/
+[bB]uild/
+# Without the trailing slash, the rule will match a file and/or
+# a directory, so the following would ignore both a file named `gen`
+# and a directory named `gen`, as well as any contents of that directory
+bin
+gen
+# Ignoring files by extension
+# All files with these extensions will be ignored in
+# this directory and all its sub-directories.
+*.apk
+*.class
+# It's possible to combine both forms to ignore files with certain
+# extensions in certain directories. The following rules would be
+# redundant with generic rules defined above.
+java/*.apk
+gen/*.class
+# To ignore files only at the top level directory, but not in its
+# subdirectories, prefix the rule with a `/`
+/*.apk
+/*.class
+# To ignore any directories named DirectoryA
+# in any depth use ** before DirectoryA
+# Do not forget the last /,
+# Otherwise it will ignore all files named DirectoryA, rather than directories
+**/DirectoryA/
+# This would ignore
+# DirectoryA/
+# DirectoryB/DirectoryA/
+# DirectoryC/DirectoryB/DirectoryA/
+# It would not ignore a file named DirectoryA, at any level
+# To ignore any directory named DirectoryB within a
+# directory named DirectoryA with any number of
+# directories in between, use ** between the directories
+DirectoryA/**/DirectoryB/
+# This would ignore
+# DirectoryA/DirectoryB/
+# DirectoryA/DirectoryQ/DirectoryB/
+# DirectoryA/DirectoryQ/DirectoryW/DirectoryB/
+# To ignore a set of files, wildcards can be used, as can be seen above.
+# A sole '*' will ignore everything in your folder, including your .gitignore file.
+# To exclude specific files when using wildcards, negate them.
+# So they are excluded from the ignore list:
+!.gitignore
+# Use the backslash as escape character to ignore files with a hash (#)
+# (supported since 1.6.2.1)
+\#*#
+
+#If you ignore files by using a pattern but have exceptions, prefix an exclamation mark(!) to the exception. For example:
+*.txt
+!important.txt
+```
+
+
 > In software projects, 	**.gitignore** typically contains a listing of files and/or directories that are generated during the build process or at runtime. Entries in the **.gitignore** file may include names or paths pointing to:
 >
 > 1. temporary resources e.g. caches, log files, compiled code, etc.
@@ -342,8 +413,30 @@ git rm filename
 > When a file or directory is ignored, it will not be:
 >
 > 1. tracked by Git
-> 2.  reported by commands such as git status or git diff
+> 2. reported by commands such as git status or git diff
 > 3. staged with commands such as git add -A
+> 4. 
+
+
+
+```bash
+git clean -Xnd # list all ignore files and folders
+
+git clean -Xfd # clean all ignored files and folders permanently
+
+git check-ignore example.o Readme.md example.o # Check if a file is ignored
+
+git check-ignore * # list all ignore files
+
+git status --ignored # This command displays the status of all files, including ignored ones. It will show a list of both tracked and untracked files, as well as ignored files.
+
+git config --global core.excludesfile <Path_To_Global_gitignore_file> 
+# Git ignore certain files across all repositories 
+# local gitignore is prioritized on global .gitignore
+# Its not a good practice to have global gitignore as it repository is cloned on multiple machines, then the global .gigignore must be loaded on all machines
+```
+
+
 
 ## Git Diff
 
