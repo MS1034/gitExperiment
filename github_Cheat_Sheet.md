@@ -2,6 +2,8 @@
 
 ## Hello World of GIT
 
+[Git Explained infrastructure in under 8 min](https://towardsdatascience.com/git-help-all-2d0bb0c31483)
+
 #### Check the Version
 
 ```bash
@@ -40,6 +42,12 @@ git status   #display which files are in which state is the git status command.
 git status -s  # display changes in a more compact way 
 
 #New files that aren’t tracked have a ?? next to them, new files that have been added to the staging area have an A, modified files have an M and so on.  are two columns to the output — the left hand column indicates the status of the staging area and the right-hand column indicates the status of the working tree.
+#A - The file has been added to the staging area.
+#D - The file has been deleted from the staging area.
+#M - The file has been modified, but not staged.
+#R - The file has been renamed, but not staged.
+#C - The file has been copied, but not staged.
+#? - The file is not tracked by Git
 ```
 
 > Remember that each file in your working directory can be in one of two states: 
@@ -305,7 +313,6 @@ git pull --rebase remote-name branch-name
 git ls-remote
 
 git ls-remote --ref
-
 
 ```
 
