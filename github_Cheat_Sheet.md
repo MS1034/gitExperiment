@@ -264,9 +264,7 @@ git log-all-name
 
 [Git remote repository tutorial and with set-url origin upstream example](https://www.youtube.com/watch?v=4AbJjvMHTZk)
 
-[(6416) 1.10: Git Remotes - Git and GitHub for Poets - YouTube](https://www.youtube.com/watch?v=lR_hYwCAaH4)
-
-
+[Git Remotes - Git and GitHub for Poets ](https://www.youtube.com/watch?v=lR_hYwCAaH4)
 
 #### List Existing Remotes  
 
@@ -320,5 +318,35 @@ git ls-remote --ref
 
 ```bash
 git remote add upstream git-repository-url
+```
+
+## Git Diff
+
+#### Diff 
+
+```bash
+git diff
+
+git diff --staged
+```
+
+
+
+## Undoing 
+
+#### Resetting staged File
+
+```bash
+git reset 
+```
+
+#### Undoing Commit 
+
+```bash
+git reset Head~n #Just Unstaged and uncommited the last n commits
+
+git reset <hash> #Just Unstaged and uncommited the commit but do not delete content in repository  
+
+git reset --hard <hash> #Also delete content in repository  
 ```
 
