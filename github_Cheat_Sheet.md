@@ -152,6 +152,8 @@ git log -G "#define SAMPLES" # Searches for changes in lines containing a specif
 
 git log -- **/*.py # git log -- <file-path-pattern>
 
+git log -- "New Text Document.txt" #All logs in which New Text Document.txt was modified
+
 ```
 
 #### List all contributions
@@ -320,6 +322,29 @@ git ls-remote --ref
 git remote add upstream git-repository-url
 ```
 
+## Staging 
+
+```bash
+git rm filename
+```
+
+## Ignoring Files and Folders  
+
+[glob pattern - Wikipedia](https://en.wikipedia.org/wiki/Glob_(programming))
+
+> In software projects, 	**.gitignore** typically contains a listing of files and/or directories that are generated during the build process or at runtime. Entries in the **.gitignore** file may include names or paths pointing to:
+>
+> 1. temporary resources e.g. caches, log files, compiled code, etc.
+> 2. local configuration files that should not be shared with other developers
+> 3. files containing secret information, such as login passwords, keys and credentials
+>
+>
+> When a file or directory is ignored, it will not be:
+>
+> 1. tracked by Git
+> 2.  reported by commands such as git status or git diff
+> 3. staged with commands such as git add -A
+
 ## Git Diff
 
 #### Diff 
@@ -338,6 +363,10 @@ git diff --staged
 
 ```bash
 git reset 
+
+git checkout -- file.txt
+
+git checkout <hash> -- file.txt
 ```
 
 #### Undoing Commit 
