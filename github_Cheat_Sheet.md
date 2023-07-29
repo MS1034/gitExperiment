@@ -72,8 +72,8 @@ git commit -m "message"
 #### Adding a remote
 
 ```bash
-git remote add origin https:// <your-git-service-address>/owner/repository.git
-git remote add origin git@github.com:MS1034/gitExperiment.git
+git remote add <REMOTENAME> https:// <your-git-service-address>/owner/repository.git
+git remote add <REMOTENAME> git@github.com:MS1034/gitExperiment.git
 ```
 
 #### Copy an existing Git repository from a server to the local machine
@@ -89,11 +89,11 @@ git clone https://github.com/username/projectname.git . # to clone in the curren
 
 ```bash
 git init --bare /path/to/repo.git # On the remote server
-git remote add origin git@github.com:MS1034/gitExperiment.git # On the local machine than --set-upstream (or -u)
-git push --set-upstream origin master
+git remote add <REMOTENAME> git@github.com:MS1034/gitExperiment.git # On the local machine than --set-upstream (or -u)
+git push --set-upstream <REMOTENAME> master
 ```
 
-> The commands **`git remote add origin` **and **`git push --set-upstream origin master`** are used when you already have a local repository and want to connect it to a remote repository on GitHub. On the other hand, **`git clone`** is used when you want to create a new local copy of an existing remote repository on GitHub.
+> The commands **`git remote add <REMOTENAME>` **and **`git push --set-upstream <REMOTENAME> master`** are used when you already have a local repository and want to connect it to a remote repository on GitHub. On the other hand, **`git clone`** is used when you want to create a new local copy of an existing remote repository on GitHub.
 
 #### Setting your user name and email
 
@@ -138,7 +138,7 @@ git config --global alias.lol "log --decorate --oneline --graph" # Since it's a 
 
 git lol # history of current branch
 
-git lol HEAD origin/feature orign/master # combined history of active branch (HEAD), origin/feature and origin/master branches
+git lol HEAD <REMOTENAME>/feature orign/master # combined history of active branch (HEAD), <REMOTENAME>/feature and <REMOTENAME>/master branches
 
 git lol --all # combined history of everything in your repo
 ```
@@ -264,7 +264,7 @@ git log-all-name
 
 ## Working with Remotes  
 
-[Git remote repository tutorial and with set-url origin upstream example](https://www.youtube.com/watch?v=4AbJjvMHTZk)
+[Git remote repository tutorial and with set-url <REMOTENAME> upstream example](https://www.youtube.com/watch?v=4AbJjvMHTZk)
 
 [Git Remotes - Git and GitHub for Poets ](https://www.youtube.com/watch?v=lR_hYwCAaH4)
 
@@ -279,7 +279,7 @@ git remote -v
 #### Deleting a Remote [Branch]  
 
 ```bash
-git remote remove origin
+git remote remove <REMOTENAME>
 git push [remote-name] --delete [branch-name]
 git push [remote-name] :[branch-name]
 ```
@@ -287,7 +287,7 @@ git push [remote-name] :[branch-name]
 #### Changing Git Remote URL  
 
 ```bash
-git remote set-url origin https://github.com/username/repo2.git
+git remote set-url <REMOTENAME> https://github.com/username/repo2.git
 ```
 
 #### Removing Local Copies of Deleted Remote Branches  
@@ -347,7 +347,7 @@ otherfile.ext
 # Ignoring directories
 # Both the directory itself and its contents will be ignored.
 bin/
-gen/GoalKicker.com – Git® Notes for Professionals 25
+gen/
 # Glob pattern can also be used here to ignore paths with certain characters.
 # For example, the below rule will match both build/ and Build/
 [bB]uild/
@@ -615,4 +615,204 @@ git reset <hash> #Just Unstaged and uncommited the commit but do not delete cont
 git reset --hard <hash> #Also delete content in repository  
 ```
 
-1
+## Section 14: Branching
+
+### Creating and Checking Out New Branches
+
+#### Creating a new branch:
+
+To create a new branch in Git, you can use the `git branch` command followed by the desired branch name. The branch name should not contain spaces and must adhere to other Git specifications.
+
+```bash
+git branch <name>
+```
+
+#### Switching to an existing branch:
+
+To switch to an existing branch, you can use the `git checkout` command followed by the branch name.
+
+```bash
+git checkout <name>
+```
+
+#### Creating and switching to a new branch:
+
+You can create a new branch and immediately switch to it using the `-b` option with the `git checkout` command.
+
+```bash
+git checkout -b <name>
+```
+
+#### Creating a branch from a specific commit:
+
+To create a new branch starting from a specific commit (not the current branch's last commit, also known as HEAD), you can provide the `<start-point>` argument.
+
+```bash
+git branch <name> [<start-point>]
+git checkout -b <name> [<start-point>]
+```
+
+### Listing Branches
+
+#### List local branches:
+
+```bash
+git branch
+```
+
+#### List local branches with extra information:
+
+```bash
+git branch -v
+```
+
+#### List all branches (remote and local):
+
+```bash
+git branch -a
+```
+
+#### List all branches with extra information:
+
+```bash
+git branch -av
+```
+
+#### List only remote branches:
+
+```bash
+git branch -r
+```
+
+#### List remote branches with their latest commit:
+
+```bash
+git branch -rv
+```
+
+#### List merged branches:
+
+```bash
+git branch --merged
+```
+
+#### List unmerged branches:
+
+```bash
+git branch --no-merged
+```
+
+#### List branches containing a specific commit:
+
+```bash
+git branch --contains <commit>
+```
+
+### Deleting Branches
+
+#### Delete a remote branch:
+
+For Git version 1.5.0 and newer:
+
+```bash
+git push origin --delete <branchName>
+```
+
+#### Delete a remote-tracking branch:
+
+```bash
+git branch --delete --remotes <remote>/<branch>
+git branch -dr <remote>/<branch> # Shorter
+```
+
+#### Delete a local branch:
+
+```bash
+git branch -d <branchName>
+# Deletes the branch named "dev" if its changes are merged with another branch and will not be lost, else shows a failure message
+```
+
+#### Force delete a local branch (even with unmerged changes):
+
+```bash
+git branch -D <branchName>
+# Force delete the branch "dev" irrespective of whether the changes are merged or not
+```
+
+### Quick Switch to the Previous Branch
+
+```bash
+git checkout -
+```
+
+### Check Out a New Branch Tracking a Remote Branch
+
+```bash
+git checkout --track -b feature origin/feature
+git checkout -t origin/feature
+git checkout feature # assuming no local feature branch and only one remote with the feature branch
+```
+
+To set upstream and track the remote branch, use:
+
+```bash
+git branch --set-upstream-to=<remote>/<branch> <branch>
+git branch -u <remote>/<branch> <branch>
+```
+
+To verify branch tracking, use:
+
+```bash
+git branch -vv
+```
+
+### Renaming a Branch
+
+```bash
+git branch --move new_name
+# Rename the branch you have checked out
+
+git branch -m old new
+# Rename the old branch to "new"
+```
+
+### Searching in Branches
+
+```bash
+git branch --contains <commit>
+# To list local branches that contain a specific commit or tag
+
+git branch -a --contains <commit>
+# To list local and remote branches that contain a specific commit or tag
+```
+
+### Pushing a Branch to a Remote
+
+```bash
+git push <REMOTENAME> <BRANCHNAME>
+
+git push -u <REMOTENAME> <BRANCHNAME> # short for --set-upstream
+
+git push <REMOTENAME> <LOCALBRANCHNAME>:<REMOTEBRANCHNAME>
+# Git pushes the local branch to a remote branch with the same name. To use a different name for the remote branch, append the remote name after the local branch name, separated by ":"
+```
+
+### Changing the current branch's HEAD to a specific commit
+
+```bash
+git reset --hard aabbcc
+# Overwrites your branch's current commit, and its entire history. Resets the file to the state it was in at commit aabbcc.
+
+git checkout aabbcc 
+# Updates the file to the state it was in at commit aabbcc. Your changes will not be applied to the file until you stage them.
+```
+
+### Creating an Orphan Branch
+
+```bash
+git checkout --orphan <branch_name>
+```
+
+Creating an orphan branch allows you to start a new history separate from the existing branches. The first commit made on this new branch will have no parents, making it the root of a new and disconnected history. It can be useful for experimentation, prototyping, or maintaining separate versions of a project.
+
+Remember, orphan branches can be challenging to manage if you have many of them, and merging them back into the main codebase can cause conflicts due to separate histories. Use orphan branches wisely based on your specific use case.
