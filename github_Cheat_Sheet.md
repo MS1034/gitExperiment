@@ -276,12 +276,12 @@ git remote --verbose
 git remote -v
 ```
 
-#### Deleting a Remote Branch  
+#### Deleting a Remote [Branch]  
 
 ```bash
+git remote remove origin
 git push [remote-name] --delete [branch-name]
 git push [remote-name] :[branch-name]
-git remote remove origin
 ```
 
 #### Changing Git Remote URL  
@@ -415,9 +415,8 @@ DirectoryA/**/DirectoryB/
 > 1. tracked by Git
 > 2. reported by commands such as git status or git diff
 > 3. staged with commands such as git add -A
-> 4. 
 
-
+#### Basics
 
 ```bash
 git clean -Xnd # list all ignore files and folders
@@ -436,19 +435,163 @@ git config --global core.excludesfile <Path_To_Global_gitignore_file>
 # Its not a good practice to have global gitignore as it repository is cloned on multiple machines, then the global .gigignore must be loaded on all machines
 ```
 
+#### Ignore files that have already been committed to a Git repository  
 
+```bash
+git rm --cached <file> #remove it from the index (stag). The --cached option will make sure that the file is not physically deleted.
 
-## Git Diff
+```
 
-#### Diff 
+## Section 6: Git Diff: Understanding and Utilizing Differences in Git
+
+`git diff` is a powerful command in Git that allows you to view the differences between various versions of your code. It is essential for understanding changes made to your codebase and can be utilized in different scenarios. Here's a comprehensive guide on how to use `git diff` effectively:
+
+### 1. Basic Usage:
+
+#### a. Unstaged Changes:
+
+To see the changes you've made but not yet staged for the next commit, simply use:
 
 ```bash
 git diff
+```
 
+This command shows the unstaged changes since your last commit.
+
+#### b. Staged Changes:
+
+To see the changes you've staged that will go into your next commit, use:
+
+```bash
 git diff --staged
 ```
 
+or its equivalent:
 
+```bash
+git diff --cached
+```
+
+### 2. Comparing Commits:
+
+#### a. Between Two Commits:
+
+You can view the changes between two specific commits using their hash identifiers:
+
+```bash
+git diff <hash_commit_old>..<hash_commit_new>
+```
+
+#### b. Recent Commits:
+
+If you want to see the changes made in the last 3 commits, you can use the `@~3..@` syntax:
+
+```bash
+git diff @~3..@
+```
+
+### 3. Comparing Branches:
+
+#### a. Between Two Branches:
+
+To view the difference between two branches, use the following command:
+
+```bash
+git diff <branch1>..<branch2> or git diff <branch1>...<branch2>
+#Show all changes on new since it branched from original
+
+git diff original new
+#Show the changes between the tip of new and the tip of original
+```
+
+### 4. Comparing Files or Directories:
+
+#### a. Between Specific Files:
+
+To see the changes between the previous commit of a specific file and the locally-modified version that has not yet been staged, use:
+
+```bash
+git diff myfile.txt
+
+git diff myfolder
+```
+
+#### b. Between Two Commits and a Specific File:
+
+If you want to compare a specific file between two separate commits, use:
+
+```bash
+git diff <commitId1>..<commitId2> myfile.txt
+```
+
+#### c. Between Two Commits and a Specific Directory:
+
+To view files that changed in a specific folder after a certain commit, use:
+
+```bash
+git diff --name-only <commitId> <folder_path>
+```
+
+### 6. Other Useful Options:
+
+#### a. Show Summary of Changes:
+
+To view a summary of changes in the format of added and deleted lines, use:
+
+```bash
+git diff --stat <branch/commitId>
+```
+
+#### b. Show Files Changed After a Certain Commit:
+
+To see a list of files that changed after a certain commit, use:
+
+```bash
+git diff --name-only <commitId>
+```
+
+#### c. Show Files Different Than a Branch:
+
+To view files that are different than a specific branch, use:
+
+```bash
+git diff --name-only <branchName>
+```
+
+#### d. Word-Level Differences:
+
+You can display word-level differences within lines instead of showing entire changed lines using `--word-diff`:
+
+```bash
+git diff --word-diff
+```
+
+####  d. Showing all Staged and Unstaged Changes:
+
+``````bash
+git diff HEAD
+#To show all staged and unstaged changes
+
+git status -vv
+#To Show which changes are staged for commit and which are not.
+``````
+
+#### Difference Between Previous and Current Commit 
+
+```bash
+git diff HEAD^ HEAD #This will show the changes between the previous commit and the current commit
+```
+
+### 7. Example Usage:
+
+```bash
+
+git diff 27fa75e myfile.txt  # Shows the difference between a version of a file in a specific commit and the local HEAD version of the file
+
+git diff branch1..branch2  # Compares the difference between two branches
+```
+
+Remember, `git diff` is a versatile command that can help you understand the history of your code and make informed decisions when collaborating with others. 
 
 ## Undoing 
 
@@ -472,3 +615,4 @@ git reset <hash> #Just Unstaged and uncommited the commit but do not delete cont
 git reset --hard <hash> #Also delete content in repository  
 ```
 
+1
