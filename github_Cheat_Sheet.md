@@ -1,126 +1,155 @@
 # Git Cheat Sheet
 
-## Hello World of GIT
+## Hello World of Git
 
 [Git Explained infrastructure in under 8 min](https://towardsdatascience.com/git-help-all-2d0bb0c31483)
 
-#### Check the Version
+### Check the Version
+
+To check the version of Git installed on your system, use the following command:
 
 ```bash
 git --version
 ```
 
-#### Create an empty Git repository:
+### Create an Empty Git Repository
+
+To create an empty Git repository in the current directory, use the `git init` command:
 
 ```bash
 git init
 ```
 
-#### Show modified files in working directory
+### Show Modified Files in Working Directory
+
+To display the status of modified files in your working directory, use the `git status` command:
 
 ```bash
-git --version
+git status
 ```
 
-#### Add a file as it looks now to your next commit (stage)
+To display changes in a more compact way, you can use the `-s` option:
 
 ```bash
-git add <file/directory name 1> <file/directory name 2> < ... >
+git status -s
 ```
 
-#### Stage all files to be added to version control
+The output will show the status of each file in the working directory. For example, untracked files will have a `??` next to them, newly added files will have an `A`, modified files will have an `M`, and so on. The left-hand column indicates the status of the staging area, and the right-hand column indicates the status of the working tree.
+
+### Add Files to the Staging Area
+
+To add specific files to the staging area (prepare them for the next commit), use the `git add` command followed by the file or directory names:
+
+```bash
+git add <file/directory name 1> <file/directory name 2> <...>
+```
+
+To stage all modified and new files in the working directory, you can use the following command:
 
 ```bash
 git add .
 ```
 
-#### Stage all files to be added to version control
+### Commit Changes
+
+To create a new commit with the changes staged in the previous step, use the `git commit` command followed by the commit message using the `-m` option:
 
 ```bash
-git status   #display which files are in which state is the git status command.
-
-git status -s  # display changes in a more compact way 
-
-#New files that aren’t tracked have a ?? next to them, new files that have been added to the staging area have an A, modified files have an M and so on.  are two columns to the output — the left hand column indicates the status of the staging area and the right-hand column indicates the status of the working tree.
-#A - The file has been added to the staging area.
-#D - The file has been deleted from the staging area.
-#M - The file has been modified, but not staged.
-#R - The file has been renamed, but not staged.
-#C - The file has been copied, but not staged.
-#? - The file is not tracked by Git
+git commit -m "Your commit message here"
 ```
 
-> Remember that each file in your working directory can be in one of two states: 
->
-> 1. Tracked :
->
->    Tracked files are files that were in the last snapshot, as well as any newly staged files; they can be unmodified, modified, or staged. In short, tracked files are files that Git knows about.
->
-> 2. Untracked:
->
->    Untracked files are everything else — any files in your working directory that were not in your last snapshot and are not in your staging area. 
->
-> When you first clone a repository, all of your files will be tracked and unmodified because Git just checked them out and you haven’t edited anything. As you edit files, Git sees them as modified, because you’ve changed them since your last commit. As you work, you selectively stage these modified files and then commit all those staged changes, and the cycle repeats.
+If you omit the `-m` parameter, your default editor will open, allowing you to enter a more detailed commit message.
 
-#### This creates a new commit with the given message
+### Adding a Remote
+
+To add a remote repository, use the `git remote add` command followed by the remote name and the repository URL:
 
 ```bash
-git commit -m "message"
-# If you omit the -m parameter, your default editor will open and you can edit and save the commit message there.
+git remote add <REMOTENAME> <repository URL>
 ```
 
-#### Adding a remote
+For example:
 
 ```bash
-git remote add <REMOTENAME> https:// <your-git-service-address>/owner/repository.git
-git remote add <REMOTENAME> git@github.com:MS1034/gitExperiment.git
+git remote add origin https://github.com/username/repository.git
 ```
 
-#### Copy an existing Git repository from a server to the local machine
+### Clone a Repository
+
+To copy an existing Git repository from a server to your local machine, use the `git clone` command followed by the repository URL:
 
 ```bash
-cd <path where you would like the clone to create a directory>
-git clone https://github.com/username/projectname.git
-git clone https://github.com/username/projectname.git MyFolder # To specify a different name of the directory, e.g. MyFolder:
-git clone https://github.com/username/projectname.git . # to clone in the current directory:
+git clone <repository URL>
 ```
 
-#### Sharing code
+You can also specify a different name for the local directory using:
 
 ```bash
-git init --bare /path/to/repo.git # On the remote server
-git remote add <REMOTENAME> git@github.com:MS1034/gitExperiment.git # On the local machine than --set-upstream (or -u)
-git push --set-upstream <REMOTENAME> master
+git clone <repository URL> <directory name>
 ```
 
-> The commands **`git remote add <REMOTENAME>` **and **`git push --set-upstream <REMOTENAME> master`** are used when you already have a local repository and want to connect it to a remote repository on GitHub. On the other hand, **`git clone`** is used when you want to create a new local copy of an existing remote repository on GitHub.
+### Share Code
 
-#### Setting your user name and email
+To share your code with a remote repository, follow these steps:
+
+1. Create a bare repository on the remote server:
+
+   ```bash
+   git init --bare /path/to/repo.git
+   ```
+
+2. On the local machine, add the remote repository:
+
+   ```bash
+   git remote add <REMOTENAME> <repository URL>
+   ```
+
+3. Push your code to the remote repository:
+
+   ```bash
+   git push --set-upstream <REMOTENAME> master
+   ```
+
+### Set Your User Name and Email
+
+To set your user name and email, use the `git config` command with the `--global` flag for global configuration or without it for repository-specific configuration:
 
 ```bash
-# global
+# Global configuration
 git config --global user.name "Your Name"
 git config --global user.email mail@example.com
 
-# repository
+# Repository-specific configuration
 cd /path/to/my/repo
 git config user.name "Your Login At Work"
 git config user.email mail_at_work@example.com
+```
 
-# remove global
+To remove the global configuration:
+
+```bash
 git config --global --remove-section user.name
 git config --global --remove-section user.email
+```
 
-# To force git to look for your identity only within a repository's settings, not in the global config:
+To force Git to look for your identity only within a repository's settings, not in the global config:
+
+```bash
 git config --global user.useConfigOnly true
 ```
 
-#### Learning about a command
+### Learning About a Command
 
-```shell
-git diff --help # git command --h
-git help diff  # git help command
+To learn more about a specific Git command, you can use either of the following options:
+
+```bash
+git diff --help # Displays help for the 'diff' command
+git help diff   # Displays help for the 'diff' command
 ```
+
+These commands will provide you with detailed information about the specified command and its options.
+
+Now you have the basics of Git to get started with version control and collaboration on your projects. Happy coding!
 
 ## Browsing Git Logs
 
@@ -325,8 +354,30 @@ git remote add upstream git-repository-url
 ## Staging 
 
 ```bash
+git add .
+git add -A
+git reset <filePath>
+# Unstage a file that contains changes
 git rm filename
 ```
+
+#### Add changes by hunk  
+
+```bash
+git add -p (short for --patch)
+```
+
+| option | Meaning |
+| ---- | ---- |
+|y|stage this hunk for the next commit|
+| n | do not stage this hunk for the next commit |
+| q | quit; do not stage this hunk or any of the remaining hunks |
+| a | d                                                          |
+| d      | g                                                          |
+| g      | /                                                          |
+| /      | j                                                          |
+|        | J                                                          |
+|        |                                                            |
 
 ## Ignoring Files and Folders  
 
@@ -815,4 +866,4 @@ git checkout --orphan <branch_name>
 
 Creating an orphan branch allows you to start a new history separate from the existing branches. The first commit made on this new branch will have no parents, making it the root of a new and disconnected history. It can be useful for experimentation, prototyping, or maintaining separate versions of a project.
 
-Remember, orphan branches can be challenging to manage if you have many of them, and merging them back into the main codebase can cause conflicts due to separate histories. Use orphan branches wisely based on your specific use case.
+Remember, orphan branches can be challenging to manage if you have many of them, and merging them back into the main codebase can cause conflicts due to separate histories. Use orphan branches wisely based on your specific use case.	
