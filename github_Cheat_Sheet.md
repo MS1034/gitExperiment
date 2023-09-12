@@ -869,3 +869,5 @@ Creating an orphan branch allows you to start a new history separate from the ex
 Remember, orphan branches can be challenging to manage if you have many of them, and merging them back into the main codebase can cause conflicts due to separate histories. Use orphan branches wisely based on your specific use case.	
 
 [Git Example Messages - Google Docs](https://docs.google.com/document/d/1dfJyM8YzXlgw7KU-KON4TixUkIHO-OJ22gwhU7MMZ4U/edit)
+
+[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
