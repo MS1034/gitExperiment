@@ -867,3 +867,5 @@ git checkout --orphan <branch_name>
 Creating an orphan branch allows you to start a new history separate from the existing branches. The first commit made on this new branch will have no parents, making it the root of a new and disconnected history. It can be useful for experimentation, prototyping, or maintaining separate versions of a project.
 
 Remember, orphan branches can be challenging to manage if you have many of them, and merging them back into the main codebase can cause conflicts due to separate histories. Use orphan branches wisely based on your specific use case.	
+
+[Git Example Messages - Google Docs](https://docs.google.com/document/d/1dfJyM8YzXlgw7KU-KON4TixUkIHO-OJ22gwhU7MMZ4U/edit)
