@@ -870,4 +870,3 @@ Remember, orphan branches can be challenging to manage if you have many of them,
 
 [Git Example Messages - Google Docs](https://docs.google.com/document/d/1dfJyM8YzXlgw7KU-KON4TixUkIHO-OJ22gwhU7MMZ4U/edit)
 
-[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
