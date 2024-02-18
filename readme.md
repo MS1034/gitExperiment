@@ -25,7 +25,7 @@ git init
 To display the status of modified files in your working directory, use the `git status` command:
 
 ```bash
-git status
+git status 
 ```
 
 To display changes in a more compact way, you can use the `-s` option:
